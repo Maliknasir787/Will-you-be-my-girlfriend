@@ -7,7 +7,7 @@
   <meta name="github" content="https://github.com/Aoudumber-Bade">
   <link type="text/css" rel="stylesheet" href="theme.css" />
   <script src="jquery-2.0.3.min.js"></script>
-  <title>Will You Be My Girlfriend 💗| Aoudumber Bade</title>
+  <title>Will You Be My Girlfriend | Aoudumber Bade</title>
 </head>
 
 <body>
@@ -16,13 +16,12 @@
     <div id="div_onlyyou">
       <div id="div_oy_inner">
         <div class="div_oy_text">
-          <h1></h1>
+          <h1>Will you be my girlfriend?</h1>
           <img class="img_oy_text" src="" />
           <p class="p_oy_text"></p>
           <div></div>
           <ul id="ul_oy_benefit">
             <li class="li_oy_benefit"></li>
-            <!-- ... more benefit list items ... -->
           </ul>
         </div>
         <ul id="ul_oy_btn">
@@ -30,7 +29,7 @@
           <li onclick="oy_show_benefit()" style="background: red;">No&nbsp;&nbsp;✖</li>
         </ul>
         <div id="div_oy_note" onclick="oy_hide_note()">
-          <img src=".image2.gif" alt="" /><br />Please say Yes!
+          <img src="image2.gif" alt="" /><br />Please say Yes!
           <div id="div_oy_note_close">✖</div>
         </div>
         <div id="div_oy_yes">
@@ -51,7 +50,7 @@
         <div class="div_music_tips"></div>
         <div class="div_btn" id="div_music" onclick="music_switch()">
           <img id="img_music" src="music_note_big.png" style="-webkit-animation: music_play_rotate 1s linear infinite;" />
-          <audio id="audio_music" autoplay="autoplay" loop="loop">
+          <audio id="audio_music" autoplay loop>
             <source type="audio/mpeg" />
           </audio>
         </div>
@@ -63,21 +62,11 @@
     </div>
   </div>
 
-  <!-- Custom Script -->
+  <!-- Viewport Handling -->
   <script>
-    // Get name from URL
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param);
-    }
-
-    const name = getQueryParam("name") || "";
-    if (name) {
-      document.title = `Will You Be My Girlfriend, ${name}? ❤️ | Aoudumber Bade`;
-      const heading = document.querySelector(".div_oy_text h1");
-      if (heading) {
-        heading.innerHTML = `Will you be my girlfriend, <um style="color:#F44336;">${name}</um>?`;
-      }
     }
 
     function init_viewport() {
@@ -93,79 +82,83 @@
       }
     }
     init_viewport();
+  </script>
 
-    var theme_content = {
-      pure_words_content: `Meeting you is the beginning of all my beautiful stories. The moment I laid eyes on you, God whispered four words in my ear: 'No escape from destiny!'\nI may have missed your past, but I will definitely stand by you through your future!\nI love you!<um style='color: #F44336;'>💕</um>`,
+  <!-- Main Script -->
+  <script>
+    const theme_content = {
+      pure_words_content: `Meeting you is the beginning of all my beautiful stories. The moment I laid eyes on you, God whispered four words in my ear: 'No escape from destiny!'\nI may have missed your past, but I will definitely stand by you through your future!\nI love you!<span style='color: #F44336;'>💕</span>`,
       typed_bool: "typed_y",
       cursor_char: "cursor_heart",
       bg_style_pure_words: "bg_opacity",
       bg_img: "3.jpg",
     };
 
-    var window_height = $(window).height();
-    var pure_words_content = theme_content["pure_words_content"];
-    var str_cursorChar;
-    var typed_bool;
-    var interval_pw_height;
-    var height_div_pw = $(".div_pure_words_height").height();
-
-    function init_pure_words() {
-      $(".div_pure_words_height").html(pure_words_content + "22222");
-
-      if (theme_content["bg_style_pure_words"] == "bg_opacity" && theme_content["bg_img"] != "") {
-        $(".div_pure_words_bg").css({
-          "background-image": "url(" + theme_content["bg_img"] + ")",
-        });
-      }
-
-      switch (theme_content["cursor_char"]) {
-        case "cursor_heart":
-          str_cursorChar = '<um style="color: #F44336;">❤</um>'; break;
-        case "cursor_sub": str_cursorChar = "_"; break;
-        case "cursor_music": str_cursorChar = "♫"; break;
-        case "cursor_star": str_cursorChar = "★"; break;
-        case "cursor_sun": str_cursorChar = "☀"; break;
-        default: str_cursorChar = "|";
-      }
-
-      typed_bool = theme_content["typed_bool"] === "typed_y";
-      display_pure_words();
-      $(".div_pure_words").fadeIn();
-
-      interval_pw_height = setInterval(() => {
-        var least_height_div_pw = $(".div_pure_words_height").height();
-        if (least_height_div_pw > height_div_pw) {
-          height_div_pw = least_height_div_pw;
-        } else {
-          clearInterval(interval_pw_height);
-          $(".div_pure_words_height").height(least_height_div_pw + 100);
-          if ($(".div_pure_words_height").height() < window_height) {
-            $(".div_pure_words_height").height(window_height);
-          }
-        }
-      }, 100);
-    }
-
-    function display_pure_words() {
-      if (typed_bool) {
-        new Typed("#span_pw_typed", {
-          strings: [pure_words_content],
-          typeSpeed: 120,
-          cursorChar: str_cursorChar,
-          contentType: "html",
-          onComplete: function () {
-            console.log("finished typing words");
-          }
-        });
-      } else {
-        $("#span_pw_typed").html(pure_words_content).fadeIn();
-      }
-    }
-
-    var start_id;
     $(function () {
-      start_id = "onlyyou";
-      init_start(start_id);
+      const name = getQueryParam("name") || "";
+      const heading = document.querySelector(".div_oy_text h1");
+
+      // Update title and h1 if name is provided
+      if (name && heading) {
+        document.title = `Will You Be My Girlfriend, ${name}? ❤️ | Aoudumber Bade`;
+        heading.innerHTML = `Will you be my girlfriend, <span style="color:#F44336;">${name}</span>?`;
+      }
+
+      var window_height = $(window).height();
+      var str_cursorChar;
+      var typed_bool = theme_content["typed_bool"] === "typed_y";
+      var pure_words_content = theme_content["pure_words_content"];
+      var height_div_pw = $(".div_pure_words_height").height();
+
+      function display_pure_words() {
+        switch (theme_content["cursor_char"]) {
+          case "cursor_heart": str_cursorChar = '<span style="color: #F44336;">❤</span>'; break;
+          case "cursor_sub": str_cursorChar = "_"; break;
+          case "cursor_music": str_cursorChar = "♫"; break;
+          case "cursor_star": str_cursorChar = "★"; break;
+          case "cursor_sun": str_cursorChar = "☀"; break;
+          default: str_cursorChar = "|";
+        }
+
+        if (typed_bool) {
+          new Typed("#span_pw_typed", {
+            strings: [pure_words_content],
+            typeSpeed: 120,
+            cursorChar: str_cursorChar,
+            contentType: "html"
+          });
+        } else {
+          $("#span_pw_typed").html(pure_words_content).fadeIn();
+        }
+      }
+
+      function init_pure_words() {
+        $(".div_pure_words_height").html(pure_words_content);
+
+        if (theme_content["bg_style_pure_words"] === "bg_opacity" && theme_content["bg_img"]) {
+          $(".div_pure_words_bg").css({ "background-image": "url(" + theme_content["bg_img"] + ")" });
+        }
+
+        display_pure_words();
+
+        $(".div_pure_words").fadeIn();
+
+        const interval_pw_height = setInterval(() => {
+          const new_height = $(".div_pure_words_height").height();
+          if (new_height > height_div_pw) {
+            height_div_pw = new_height;
+          } else {
+            clearInterval(interval_pw_height);
+            $(".div_pure_words_height").height(new_height + 100);
+            if (new_height < window_height) {
+              $(".div_pure_words_height").height(window_height);
+            }
+          }
+        }, 100);
+      }
+
+      init_pure_words();
+      init_start("onlyyou");
     });
 
     function init_start(start_id) {
